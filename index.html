@@ -61,19 +61,29 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-tree-save-mode/tree-save-mode" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-tree-save-mode" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/18/tree-save-mode/tree-save-mode/" class="article-date">
-  <time datetime="2016-07-18T09:28:10.000Z" itemprop="datePublished">2016-07-18</time>
+    <a href="/2016/06/18/tree-save-mode/" class="article-date">
+  <time datetime="2016-06-18T10:05:00.000Z" itemprop="datePublished">2016-06-18</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/18/tree-save-mode/">树的存储和常用操作</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="u6811_u7684_u5B58_u50A8_u548C_u5E38_u7528_u64CD_u4F5C"><a href="#u6811_u7684_u5B58_u50A8_u548C_u5E38_u7528_u64CD_u4F5C" class="headerlink" title="树的存储和常用操作"></a>树的存储和常用操作</h1><h2 id="1-__u6982_u8FF0"><a href="#1-__u6982_u8FF0" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>树是我们日常开发中经常会用到的一种数据类型，常用的应用场景有：无限级分类、任务列表等层次数据。为了便于理解我们首先假设需要存储如下图所示的树结构：<br><img src="/./tree1.png" alt="图1"></p>
+        <h2 id="1-__u6982_u8FF0"><a href="#1-__u6982_u8FF0" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>树是我们日常开发中经常会用到的一种数据类型，常用的应用场景有：无限级分类、任务列表等层次数据。为了便于理解我们首先假设需要存储如下图所示的树结构：<br><img src="http://oai9j2nno.bkt.clouddn.com/tree1.png" alt="图1"></p>
 <p>对这样一颗树常用的树操作有：</p>
 <ul>
 <li>树节点查询：</li>
@@ -157,7 +167,7 @@
 <p>同样，要实现这样的查询性能也是非常低的。当然，我们也可以像2.1那样优化在节点中添加一个childrenId字段存储节点的所有子节点ID来进行查询优化，但是很显然的问题如果这是一个颗很大的树，那么root节点的children字段将会非常大！噢No！</p>
 <h3 id="2-3__u6DFB_u52A0_u65B0_u8282_u70B9"><a href="#2-3__u6DFB_u52A0_u65B0_u8282_u70B9" class="headerlink" title="2.3 添加新节点"></a>2.3 添加新节点</h3><p>假设现在需要为A2.1添加一个子A2.1.1，很简单只需要插入一条数据将parentId设置为9就可以了。</p>
 <h3 id="2-4__u79FB_u52A8_u8282_u70B9"><a href="#2-4__u79FB_u52A8_u8282_u70B9" class="headerlink" title="2.4 移动节点"></a>2.4 移动节点</h3><p>移动节点也非常简单快速，假设我们需要将A2.1节点移动到节点C下只需要更新A2.1节点的parentId字段为4就可以了。</p>
-<h2 id="3-__u5148_u6839_u904D_u5386_u6811_u6A21_u578B"><a href="#3-__u5148_u6839_u904D_u5386_u6811_u6A21_u578B" class="headerlink" title="3. 先根遍历树模型"></a>3. 先根遍历树模型</h2><p>先根遍历树模型是另一种常用的树存储模型，实现方法是从根节点左侧开始分别为每个节点进行编号直到树的最底层，再从最底成节点右侧反向编号直到回到根节点。如下图所示：<br><img src="/./tree2.png" alt="图2"></p>
+<h2 id="3-__u5148_u6839_u904D_u5386_u6811_u6A21_u578B"><a href="#3-__u5148_u6839_u904D_u5386_u6811_u6A21_u578B" class="headerlink" title="3. 先根遍历树模型"></a>3. 先根遍历树模型</h2><p>先根遍历树模型是另一种常用的树存储模型，实现方法是从根节点左侧开始分别为每个节点进行编号直到树的最底层，再从最底成节点右侧反向编号直到回到根节点。如下图所示：<br><img src="http://oai9j2nno.bkt.clouddn.com/tree2.png" alt="图2"></p>
 <p>这样每个节点都获得了一个左值和右值，使用Mysql存储的表结构类似下表：</p>
 <table>
 <thead>
@@ -243,54 +253,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://biqiang.info/2016/07/18/tree-save-mode/tree-save-mode/" data-id="ciqru0jmn0001oqee3r1cjilz" class="article-share-link">Share</a>
+      <a data-url="http://biqiang.info/2016/06/18/tree-save-mode/" data-id="ciqrwslz300001weevdpfbvxa" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
 
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/18/hello-world/" class="article-date">
-  <time datetime="2016-07-18T09:27:31.000Z" itemprop="datePublished">2016-07-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://biqiang.info/2016/07/18/hello-world/" data-id="ciqru0jlv0000oqeeez436kzy" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -306,14 +273,28 @@
     
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -325,11 +306,7 @@
       <ul>
         
           <li>
-            <a href="/2016/07/18/tree-save-mode/tree-save-mode/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/18/hello-world/">Hello World</a>
+            <a href="/2016/06/18/tree-save-mode/">树的存储和常用操作</a>
           </li>
         
       </ul>
